@@ -1,0 +1,9 @@
+[package]
+name = "vemu-fdt"
+description = "Flattened device tree (DTB) writer"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]

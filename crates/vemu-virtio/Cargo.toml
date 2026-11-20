@@ -1,0 +1,12 @@
+[package]
+name = "vemu-virtio"
+description = "virtio 1.x split virtqueues, virtio-mmio transport, console/block/net devices"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+libc.workspace = true
+vemu-core.workspace = true
+vemu-disk.workspace = true

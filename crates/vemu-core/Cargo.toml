@@ -1,0 +1,10 @@
+[package]
+name = "vemu-core"
+description = "Shared VMM types: guest memory, MMIO device and interrupt traits, net backend traits"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+libc.workspace = true

@@ -1,0 +1,24 @@
+[package]
+name = "vemu"
+description = "Minimal hardware-virtualized Linux VM runner (Hypervisor.framework now, KVM later)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "vemu"
+path = "src/main.rs"
+
+[dependencies]
+libc.workspace = true
+vemu-core.workspace = true
+vemu-disk.workspace = true
+vemu-hv.workspace = true
+vemu-virtio.workspace = true
+vemu-net.workspace = true
+vemu-build.workspace = true
+
+# The device tree is the aarch64 machine's firmware interface.
+[target.'cfg(target_arch = "aarch64")'.dependencies]
+vemu-fdt.workspace = true

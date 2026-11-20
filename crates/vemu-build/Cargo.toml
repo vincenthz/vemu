@@ -1,0 +1,10 @@
+[package]
+name = "vemu-build"
+description = "vemu build: Alpine Linux disk images made by a builder VM (config, downloads, archives, the guest script)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+libc.workspace = true

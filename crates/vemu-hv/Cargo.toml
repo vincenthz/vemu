@@ -1,0 +1,11 @@
+[package]
+name = "vemu-hv"
+description = "Hypervisor abstraction (vCPU/VM/GIC) with a Hypervisor.framework backend; KVM later"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+libc.workspace = true
+vemu-core.workspace = true

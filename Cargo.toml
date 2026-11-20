@@ -1,0 +1,22 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+rust-version = "1.90"
+
+[workspace.dependencies]
+libc = "0.2.191"
+vemu-core = { path = "crates/vemu-core" }
+vemu-disk = { path = "crates/vemu-disk" }
+vemu-hv = { path = "crates/vemu-hv" }
+vemu-fdt = { path = "crates/vemu-fdt" }
+vemu-virtio = { path = "crates/vemu-virtio" }
+vemu-net = { path = "crates/vemu-net" }
+vemu-build = { path = "crates/vemu-build" }
+
+[profile.release]
+debug = 1

@@ -1,0 +1,33 @@
+#!/bin/sh
+# Linker for the aarch64-unknown-linux-musl Rust target (see .cargo/config.toml):
+# zig's clang driver links static Linux executables from macOS (or any host)
+# without a cross toolchain, using the musl and libunwind zig ships.
+#
+# rustc's musl target is "self-contained": it passes its own crt objects and
+# a -L to its own libc.a. zig adds its crt objects regardless, so those are
+# dropped here (the same as -C link-self-contained=no, but independent of
+# RUSTFLAGS), along with flags zig's driver rejects:
+#   -Wl,--fix-cortex-a53-843419  erratum workaround rustc adds on aarch64
+#   -Wl,-O1                      release builds; zig warns "ignoring deprecated
+#                                linker optimization setting" (rustc shows it)
+n=$#
+skip_l=
+while [ "$n" -gt 0 ]; do
+  a="$1"; shift; n=$((n - 1))
+  if [ -n "$skip_l" ]; then
+    skip_l=
+    case "$a" in
+      */self-contained) continue ;;
+      *) set -- "$@" -L "$a"; continue ;;
+    esac
+  fi
+  case "$a" in
+    -Wl,--fix-cortex-a53-843419) ;;
+    -Wl,-O[0-9]) ;;
+    */self-contained/*.o) ;;
+    -L*/self-contained) ;;
+    -L) skip_l=1 ;;
+    *) set -- "$@" "$a" ;;
+  esac
+done
+exec "${ZIG:-zig}" cc -target aarch64-linux-musl "$@"

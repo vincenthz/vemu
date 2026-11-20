@@ -1,0 +1,16 @@
+# Hypervisor.framework refuses to create a VM unless the binary carries the
+# com.apple.security.hypervisor entitlement, so every binary cargo runs
+# (vemu itself and test executables) is ad-hoc signed first.
+[target.aarch64-apple-darwin]
+runner = "scripts/run-signed.sh"
+
+# Linux (KVM) builds from any host: static musl executables linked by zig
+# (`zig cc`), which carries musl and needs no cross toolchain. Paths with a
+# slash are relative to this file's parent directory (the workspace root).
+# On a Linux host with a native musl toolchain these can be overridden with
+# CARGO_TARGET_<TRIPLE>_LINKER.
+[target.aarch64-unknown-linux-musl]
+linker = "scripts/zig-cc-aarch64-linux-musl"
+
+[target.x86_64-unknown-linux-musl]
+linker = "scripts/zig-cc-x86_64-linux-musl"

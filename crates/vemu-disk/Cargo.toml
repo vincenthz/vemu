@@ -1,0 +1,10 @@
+[package]
+name = "vemu-disk"
+description = "Disk backends for virtio-blk: raw images, vemu overlays on golden images, throwaway snapshots"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+libc.workspace = true

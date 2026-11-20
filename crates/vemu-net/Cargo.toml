@@ -1,0 +1,11 @@
+[package]
+name = "vemu-net"
+description = "User-mode NAT network backend (slirp-like): ARP, DHCP, DNS relay, ICMP, UDP, TCP, host port forwarding"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+libc.workspace = true
+vemu-core.workspace = true
